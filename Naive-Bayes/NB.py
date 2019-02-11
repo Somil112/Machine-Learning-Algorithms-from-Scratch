@@ -67,21 +67,21 @@ p_rainy_working_stay_home = p_rainy_stay_home * p_working_stay_home *p_stay_home
 p_rainy_broken_go_out = p_rainy_go_out *p_broken_go_out *p_go_out
 p_rainy_broken_stay_home = p_rainy_stay_home * p_broken_stay_home * p_stay_home
 
-dataset['go-out']  = 0
-dataset['stay-home'] = 0
-
+dataset['go-out']  = 0.0
+dataset['stay-home'] = 0.0
 
 
 for i in range(len(dataset)):
+    print(dataset['Weather'][i] == 'sunny')
     if(dataset['Weather'][i] == 'sunny' and dataset['Car'][i] == 'working'):
-        dataset['go-out'][i] = p_sunny_working_go_out
-        dataset['stay-home'][i] = p_sunny_working_stay_home
+        dataset.at[i,'go-out'] = p_sunny_working_go_out
+        dataset.at[i,'stay-home'] = p_sunny_working_stay_home
     if(dataset['Weather'][i] == 'sunny' and dataset['Car'][i] == 'broken'):
-        dataset['go-out'][i] = p_sunny_broken_go_out
-        dataset['stay-home'][i] = p_sunny_broken_stay_home
+        dataset.at[i,'go-out'] = p_sunny_broken_go_out
+        dataset.at[i,'stay-home'] = p_sunny_broken_stay_home
     if(dataset['Weather'][i] == 'rainy' and dataset['Car'][i] == 'working'):
-        dataset['go-out'][i] = p_rainy_working_go_out
-        dataset['stay-home'][i] = p_rainy_working_stay_home
+        dataset.at[i,'go-out'] = p_rainy_working_go_out
+        dataset.at[i,'stay-home'] = p_rainy_working_stay_home
     if(dataset['Weather'][i] == 'rainy' and dataset['Car'][i] == 'broken'):
-        dataset['go-out'][i] = p_rainy_broken_go_out
-        dataset['stay-home'][i] = p_rainy_broken_stay_home
+       dataset.at[i,'go-out'] = p_rainy_broken_go_out
+       dataset.at[i,'stay-home'] = p_rainy_broken_stay_home
