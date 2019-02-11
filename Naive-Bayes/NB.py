@@ -87,3 +87,32 @@ for i in range(len(dataset)):
        
 print("Final Results")
 print(dataset)
+
+from sklearn.naive_bayes import GaussianNB
+from sklearn import preprocessing
+
+X = dataset.iloc[:,[0,1]].values
+y = dataset.iloc[:,[2]].values
+
+labelencoder_x1 = preprocessing.LabelEncoder()
+
+labelencoder_x1.fit(X[:,[0]])
+X[:,[0]] = labelencoder_x1.transform(X[:,[0]]).reshape(10,1)
+
+labelencoder_x2 = preprocessing.LabelEncoder()
+
+labelencoder_x2.fit(X[:,[1]])
+X[:,[1]] = labelencoder_x2.transform(X[:,[1]]).reshape(10,1)
+
+labelencoder_y = preprocessing.LabelEncoder()
+
+labelencoder_y.fit(y)
+y = labelencoder_y.transform(y).reshape(10,1)
+
+
+
+
+gnb = GaussianNB()
+y_pred = gnb.fit(X,y).predict(X)
+
+y_pred = labelencoder_y.inverse_transform(y_pred)
