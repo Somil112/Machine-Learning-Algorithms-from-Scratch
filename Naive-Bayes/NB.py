@@ -72,7 +72,6 @@ dataset['stay-home'] = 0.0
 
 
 for i in range(len(dataset)):
-    print(dataset['Weather'][i] == 'sunny')
     if(dataset['Weather'][i] == 'sunny' and dataset['Car'][i] == 'working'):
         dataset.at[i,'go-out'] = p_sunny_working_go_out
         dataset.at[i,'stay-home'] = p_sunny_working_stay_home
@@ -85,3 +84,6 @@ for i in range(len(dataset)):
     if(dataset['Weather'][i] == 'rainy' and dataset['Car'][i] == 'broken'):
        dataset.at[i,'go-out'] = p_rainy_broken_go_out
        dataset.at[i,'stay-home'] = p_rainy_broken_stay_home
+       
+print("Final Results")
+print(dataset)
